@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rembesha_mobile_app/pages/auth/login.dart';
+import 'package:rembesha_mobile_app/pages/auth/signup.dart';
 import 'package:rembesha_mobile_app/pages/onboarding.dart';
 
 void main() {
@@ -15,6 +16,7 @@ class MainApplicationWidget extends StatelessWidget {
       routes: {
         '/': (context) => Onboarding(),
         '/login': (context) => Login(),
+        '/signup': (context) => Signup(),
       },
       initialRoute: '/',
     );

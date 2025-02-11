@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:rembesha_mobile_app/widgets/auth/login_form.dart';
+import 'package:rembesha_mobile_app/widgets/auth/signup_form.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Signup extends StatefulWidget {
+  const Signup({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Signup> createState() => _SignupState();
 }
 
-class _LoginState extends State<Login> {
+class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +34,7 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
-            LoginForm(),
+            SignupForm(),
           ],
         ),
       ),

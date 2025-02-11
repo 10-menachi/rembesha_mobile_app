@@ -47,7 +47,7 @@ class _LoginFormState extends State<LoginForm> {
               validationText: "Password is required",
             ),
             SizedBox(
-              height: 80,
+              height: 50,
             ),
             SizedBox(
               width: double.infinity,
@@ -77,6 +77,21 @@ class _LoginFormState extends State<LoginForm> {
                   ),
                 ),
               ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text("Don't have an account?"),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/signup");
+                  },
+                  child: Text("Sign up"),
+                ),
+              ],
             ),
           ],
         ),
