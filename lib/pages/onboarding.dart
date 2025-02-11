@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:rembesha_mobile_app/components/indicator.dart';
+import 'package:rembesha_mobile_app/widgets/indicator.dart';
 import 'package:rembesha_mobile_app/utils/constants.dart';
 
 class Onboarding extends StatefulWidget {
