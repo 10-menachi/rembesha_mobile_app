@@ -31,3 +31,37 @@ InputDecoration customInputDecoration(String labelText, String hintText) {
     ),
   );
 }
+
+void showTopSnackBar(BuildContext context, String message) {
+  final overlay = Overlay.of(context);
+  final overlayEntry = OverlayEntry(
+    builder: (context) => Positioned(
+      top: MediaQuery.of(context).padding.top + 10,
+      left: 16,
+      right: 16,
+      child: Material(
+        color: Colors.transparent,
+        child: Container(
+          padding: EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.red,
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: [BoxShadow(blurRadius: 4, color: Colors.black26)],
+          ),
+          child: Text(
+            message,
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+      ),
+    ),
+  );
+
+  overlay.insert(overlayEntry);
+
+  Future.delayed(Duration(seconds: 3), () {
+    overlayEntry.remove();
+  });
+}
+
+enum AuthState { authenticated, unauthenticated }

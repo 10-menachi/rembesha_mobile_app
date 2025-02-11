@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:rembesha_mobile_app/utils/auth.dart';
+import 'package:rembesha_mobile_app/utils/constants.dart';
 import 'package:rembesha_mobile_app/widgets/custom_text_field.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -10,6 +13,8 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -34,6 +39,7 @@ class _LoginFormState extends State<LoginForm> {
               height: 10,
             ),
             CustomTextField(
+              textEditingController: _emailController,
               labelText: "Email",
               hintText: "Enter your email",
               validationText: "Email is required",
@@ -42,9 +48,11 @@ class _LoginFormState extends State<LoginForm> {
               height: 10,
             ),
             CustomTextField(
+              textEditingController: _passwordController,
               labelText: "Password",
               hintText: "Enter your password",
               validationText: "Password is required",
+              obscureText: true,
             ),
             SizedBox(
               height: 50,
@@ -53,9 +61,20 @@ class _LoginFormState extends State<LoginForm> {
               width: double.infinity,
               height: 50,
               child: ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (formKey.currentState!.validate()) {
-                    // Do something
+                    try {
+                      final AuthResponse authResponse =
+                          await supabase.auth.signInWithPassword(
+                        email: _emailController.text,
+                        password: _passwordController.text,
+                      );
+                      if (authResponse.user != null) {
+                        Navigator.pushNamed(context, "/dashboard");
+                      }
+                    } on AuthException catch (authError, exception) {
+                      showTopSnackBar(context, authError.message);
+                    }
                   }
                 },
                 style: ButtonStyle(
